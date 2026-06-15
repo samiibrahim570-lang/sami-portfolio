@@ -1,0 +1,43 @@
+<section class="projects" id="projects">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">// featured work</span>
+      <h2 class="section-title">Key <span>Projects</span></h2>
+      <p class="section-desc">Enterprise systems built with real-world business impact</p>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-card reveal" *ngFor="let project of projects; let i = index"
+           [style.animation-delay]="i * 0.15 + 's'">
+        <div class="card-glow" [style.background]="project.color + '18'"></div>
+
+        <div class="card-top">
+          <div class="project-icon" [style.border-color]="project.color + '40'">
+            <span>{{ project.icon }}</span>
+          </div>
+          <div class="card-number">0{{ i + 1 }}</div>
+        </div>
+
+        <h3 class="project-title">{{ project.title }}</h3>
+        <p class="project-desc">{{ project.desc }}</p>
+
+        <div class="project-highlights">
+          <div class="ph-item" *ngFor="let h of project.highlights">
+            <div class="ph-dot" [style.background]="project.color"></div>
+            <span>{{ h }}</span>
+          </div>
+        </div>
+
+        <div class="project-tags">
+          <span class="tag" *ngFor="let tag of project.tags" [style.color]="project.color"
+                [style.border-color]="project.color + '40'"
+                [style.background]="project.color + '12'">
+            {{ tag }}
+          </span>
+        </div>
+
+        <div class="card-border" [style.background]="'linear-gradient(to right, ' + project.color + ', transparent)'"></div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,20 @@
+<nav class="navbar" [class.scrolled]="scrolled">
+  <div class="container nav-inner">
+    <a href="#hero" class="logo">
+      <span class="bracket">&lt;</span>SI<span class="bracket">/&gt;</span>
+    </a>
+
+    <ul class="nav-links" [class.open]="menuOpen">
+      <li *ngFor="let link of navLinks">
+        <a [href]="link.href" (click)="closeMenu()">{{ link.label }}</a>
+      </li>
+      <li>
+        <a href="#contact" class="btn-hire" (click)="closeMenu()">Hire Me</a>
+      </li>
+    </ul>
+
+    <button class="hamburger" (click)="toggleMenu()" [class.open]="menuOpen">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>

@@ -1,0 +1,89 @@
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">// get in touch</span>
+      <h2 class="section-title">Let's Work <span>Together</span></h2>
+      <p class="section-desc">Have a project in mind? I'd love to hear about it.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3>Contact Information</h3>
+        <p>I'm open to freelance projects, full-time opportunities, and collaborations. Let's build something great.</p>
+
+        <div class="contact-items">
+          <a href="mailto:samiibrahim570@gmail.com" class="contact-item">
+            <div class="ci-icon">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+            </div>
+            <div>
+              <span class="ci-label">Email</span>
+              <span class="ci-value">samiibrahim570&#64;gmail.com</span>
+            </div>
+          </a>
+
+          <a href="tel:+923132334173" class="contact-item">
+            <div class="ci-icon">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+            </div>
+            <div>
+              <span class="ci-label">Phone</span>
+              <span class="ci-value">+92 313 2334173</span>
+            </div>
+          </a>
+
+          <div class="contact-item">
+            <div class="ci-icon">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <span class="ci-label">Location</span>
+              <span class="ci-value">Karachi, Pakistan</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="availability">
+          <div class="avail-dot"></div>
+          <span>Available for new opportunities</span>
+        </div>
+      </div>
+
+      <div class="contact-form reveal">
+        <div class="success-state" *ngIf="submitted">
+          <div class="success-icon">
+            <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3>Message Sent!</h3>
+          <p>Thanks for reaching out. I'll get back to you soon.</p>
+        </div>
+
+        <form *ngIf="!submitted" (ngSubmit)="onSubmit()" #contactForm="ngForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Your Name</label>
+              <input type="text" placeholder="Muhammad Ali" [(ngModel)]="form.name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" placeholder="ali@example.com" [(ngModel)]="form.email" name="email" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Subject</label>
+            <input type="text" placeholder="Project Collaboration" [(ngModel)]="form.subject" name="subject">
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea rows="5" placeholder="Tell me about your project..." [(ngModel)]="form.message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="btn-primary submit-btn" [disabled]="sending || contactForm.invalid">
+            <svg *ngIf="!sending" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            <span class="spinner" *ngIf="sending"></span>
+            {{ sending ? 'Sending...' : 'Send Message' }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

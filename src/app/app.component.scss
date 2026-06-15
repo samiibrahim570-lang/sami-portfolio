@@ -1,0 +1,23 @@
+.footer {
+  padding: 2.5rem 0;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  background: var(--bg-secondary);
+
+  p {
+    font-family: var(--font-body);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+
+    span {
+      color: var(--cyan);
+      font-weight: 600;
+    }
+  }
+
+  .sub {
+    margin-top: 0.4rem;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+  }
+}
