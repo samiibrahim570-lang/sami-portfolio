@@ -1,0 +1,106 @@
+<section class="hero">
+  <canvas #net class="net" aria-hidden="true"></canvas>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="grid-bg"></div>
+
+  <div class="container hero-inner">
+    <div class="copy">
+      <div class="badge in-1">
+        <span class="pulse"></span>
+        Currently .NET Developer @ Child Life Foundation
+      </div>
+
+      <h1 class="name">
+        <span class="hi in-2">Hi, I'm</span>
+        <span class="word">
+          @for (c of firstLetters; track $index) {
+            <span class="ch" [style.animation-delay.ms]="1500 + $index * 60">{{ c }}</span>
+          }
+        </span>
+        <span class="word grad-text-wrap">
+          @for (c of lastLetters; track $index) {
+            <span class="ch grad" [style.animation-delay.ms]="1800 + $index * 60">{{ c }}</span>
+          }
+        </span>
+      </h1>
+
+      <div class="role in-3">
+        <span class="mono">&gt;</span>
+        <span class="typed">{{ typed() }}</span><span class="caret"></span>
+      </div>
+
+      <p class="lead in-4">
+        I build <b>enterprise ERP</b> and <b>healthcare systems</b> — EMR, DSS &amp; LAB — with
+        <b>Angular</b> on the front and <b>ASP.NET Core</b> on the back. Clean architecture, secure APIs,
+        fast SQL, and interfaces people enjoy using.
+      </p>
+
+      <div class="actions in-5">
+        <a href="#projects" class="btn btn-primary" magnetic>View My Work <app-icon name="arrow" [size]="18" /></a>
+        <a [href]="p.cv" download class="btn btn-ghost" magnetic><app-icon name="download" [size]="18" /> Download CV</a>
+        <div class="socials">
+          <a [href]="p.linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><app-icon name="linkedin" [size]="18" /></a>
+          <a [href]="'mailto:' + p.email" aria-label="Email"><app-icon name="mail" [size]="18" /></a>
+        </div>
+      </div>
+
+      <div class="stats in-6">
+        @for (s of stats; track s.label) {
+          <div class="stat">
+            <strong [countUp]="s.value" [suffix]="s.suffix"></strong>
+            <span>{{ s.label }}</span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Visual -->
+    <div class="visual in-v">
+      <div class="orbit-wrap">
+        <div class="ring r1"></div>
+        <div class="ring r2"></div>
+        <div class="ring r3"></div>
+
+        <div class="core">
+          <div class="core-inner">
+            <span>SI</span>
+            <small>Full Stack</small>
+          </div>
+        </div>
+
+        <div class="orbit">
+          @for (o of orbit; track o.label; let i = $index) {
+            <div class="sat" [style.--a]="(360 / orbit.length) * i + 'deg'">
+              <span class="sat-pill" [style.--c]="o.color"><i></i>{{ o.label }}</span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="code-card float-a">
+        <div class="cc-head"><i></i><i></i><i></i><span>sami.ts</span></div>
+<pre><span class="k">const</span> dev = &#123;
+  stack: [<span class="s">'Angular'</span>, <span class="s">'.NET'</span>],
+  domain: <span class="s">'ERP · Healthcare'</span>,
+  available: <span class="b">true</span>
+&#125;;</pre>
+      </div>
+
+      <div class="mini-card float-b">
+        <span class="mc-icon"><app-icon name="heart" [size]="18" /></span>
+        <div><b>EMR · DSS · LAB</b><small>Healthcare systems</small></div>
+      </div>
+
+      <div class="mini-card float-c">
+        <span class="mc-icon alt"><app-icon name="shield" [size]="18" /></span>
+        <div><b>JWT + RBAC</b><small>Secure by design</small></div>
+      </div>
+    </div>
+  </div>
+
+  <a href="#about" class="scroll-hint" aria-label="Scroll down">
+    <span class="mouse"><i></i></span>
+    <small>Scroll</small>
+  </a>
+</section>

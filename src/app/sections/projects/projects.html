@@ -1,0 +1,79 @@
+<section class="block projects">
+  <div class="container">
+    <div class="section-head center" reveal>
+      <span class="eyebrow">Featured work</span>
+      <h2>Key <span class="grad-text">Projects</span></h2>
+      <p>Enterprise systems built for real organizations — from patient care to production floors.</p>
+    </div>
+
+    <!-- Featured -->
+    <article class="featured" reveal="zoom">
+      <div class="f-copy">
+        <span class="f-label"><app-icon name="zap" [size]="14" /> Featured · {{ featured.org }}</span>
+        <h3>{{ featured.title }}</h3>
+        <p>{{ featured.text }}</p>
+        <ul>
+          @for (f of featured.features; track f) {
+            <li><app-icon name="check" [size]="15" [stroke]="2.6" /> {{ f }}</li>
+          }
+        </ul>
+        <div class="tags">
+          @for (t of featured.tags; track t) { <span>{{ t }}</span> }
+        </div>
+      </div>
+
+      <!-- Mock dashboard -->
+      <div class="f-visual" tilt [tiltMax]="6">
+        <div class="win">
+          <div class="win-bar"><i></i><i></i><i></i><span>clf-emr / dashboard</span></div>
+          <div class="win-body">
+            <aside>
+              <b></b>
+              @for (n of [1,2,3,4,5]; track n) { <span [class.on]="n === 1"></span> }
+            </aside>
+            <div class="dash">
+              <div class="kpis">
+                <div class="kpi"><small>Patients</small><strong>EMR</strong><em class="up">● live</em></div>
+                <div class="kpi"><small>Decisions</small><strong>DSS</strong><em>● rules</em></div>
+                <div class="kpi"><small>Lab tests</small><strong>LAB</strong><em>● results</em></div>
+              </div>
+              <div class="chart">
+                @for (h of [42, 64, 50, 78, 58, 88, 70, 95, 66, 84]; track $index) {
+                  <span [style.--h]="h + '%'" [style.--d]="$index * 70 + 'ms'"></span>
+                }
+              </div>
+              <div class="rows">
+                @for (r of [1,2,3]; track r) { <div class="row"><i></i><b></b><span></span></div> }
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pulse-card"><app-icon name="heart" [size]="16" /> Healthcare</div>
+      </div>
+    </article>
+
+    <!-- Grid -->
+    <div class="grid">
+      @for (p of others; track p.title; let i = $index) {
+        <article class="proj card" tilt reveal [revealDelay]="(i % 2) * 120">
+          <div class="p-top">
+            <span class="p-icon"><app-icon [name]="p.icon" [size]="24" /></span>
+            <span class="p-num">0{{ i + 2 }}</span>
+          </div>
+          <span class="p-org">{{ p.org }}</span>
+          <h3>{{ p.title }}</h3>
+          <p>{{ p.text }}</p>
+          <div class="feat">
+            @for (f of p.features; track f) { <span>{{ f }}</span> }
+          </div>
+          <div class="p-foot">
+            <div class="stack">
+              @for (t of p.tags; track t) { <span class="chip">{{ t }}</span> }
+            </div>
+            <span class="arrow"><app-icon name="arrow" [size]="18" /></span>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

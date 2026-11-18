@@ -1,0 +1,57 @@
+<section class="block contact">
+  <div class="container">
+    <div class="wrap">
+      <!-- Left -->
+      <div class="left" reveal="left">
+        <span class="eyebrow light">Get in touch</span>
+        <h2>Let's build something <span class="hl">great together.</span></h2>
+        <p>Open to full-time roles, freelance projects and collaborations — especially in ERP and healthcare. Drop a message and I'll get back to you quickly.</p>
+
+        <div class="items">
+          @for (it of items; track it.label; let i = $index) {
+            @if (it.href) {
+              <a class="item" [href]="it.href" [attr.target]="it.icon === 'linkedin' ? '_blank' : null" rel="noopener">
+                <span class="i-icon"><app-icon [name]="it.icon" [size]="19" /></span>
+                <span><small>{{ it.label }}</small><b>{{ it.value }}</b></span>
+              </a>
+            } @else {
+              <div class="item">
+                <span class="i-icon"><app-icon [name]="it.icon" [size]="19" /></span>
+                <span><small>{{ it.label }}</small><b>{{ it.value }}</b></span>
+              </div>
+            }
+          }
+        </div>
+
+        <div class="avail"><span class="pulse"></span> Available for new opportunities</div>
+      </div>
+
+      <!-- Form -->
+      <form class="form" reveal="right" [revealDelay]="120" #f="ngForm" (ngSubmit)="f.valid && send()">
+        <h3>Send a message</h3>
+        <div class="row2">
+          <label class="field">
+            <input name="name" [(ngModel)]="form.name" required placeholder=" " />
+            <span>Your name</span>
+          </label>
+          <label class="field">
+            <input name="email" type="email" [(ngModel)]="form.email" required email placeholder=" " />
+            <span>Email address</span>
+          </label>
+        </div>
+        <label class="field">
+          <input name="subject" [(ngModel)]="form.subject" placeholder=" " />
+          <span>Subject</span>
+        </label>
+        <label class="field">
+          <textarea name="message" rows="5" [(ngModel)]="form.message" required placeholder=" "></textarea>
+          <span>Your message</span>
+        </label>
+        <button class="btn btn-primary send" type="submit" [disabled]="f.invalid" magnetic>
+          @if (sent()) { <app-icon name="check" [size]="18" /> Opening your mail app… }
+          @else { Send Message <app-icon name="send" [size]="17" /> }
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

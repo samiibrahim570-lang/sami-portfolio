@@ -1,0 +1,64 @@
+<section class="block experience">
+  <div class="bg-orb"></div>
+  <div class="container">
+    <div class="section-head" reveal>
+      <span class="eyebrow">Work history</span>
+      <h2>Professional <span class="grad-text">Experience</span></h2>
+      <p>Building systems that run real businesses and support real patient care.</p>
+    </div>
+
+    <div class="timeline" #timeline>
+      <div class="line"><i [style.height.%]="lineFill()"></i></div>
+
+      @for (j of jobs; track j.company; let i = $index) {
+        <article class="job" reveal="right" [revealDelay]="i * 120">
+          <span class="node" [class.current]="j.current"><app-icon name="briefcase" [size]="18" /></span>
+
+          <div class="job-card card" tilt [tiltMax]="4">
+            <header>
+              <div>
+                <h3>{{ j.role }}</h3>
+                <p class="company">{{ j.company }} <span>· {{ j.type }}</span></p>
+              </div>
+              <div class="meta">
+                @if (j.current) { <span class="live"><i></i> Current</span> }
+                <span class="period">{{ j.period }}</span>
+              </div>
+            </header>
+
+            <ul>
+              @for (pt of j.points; track $index) {
+                <li><span class="dot"></span>{{ pt }}</li>
+              }
+            </ul>
+
+            <div class="tags">
+              @for (t of j.tags; track t) { <span class="chip">{{ t }}</span> }
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+
+    <!-- Education -->
+    <div class="edu-head" reveal>
+      <span class="eyebrow">Education</span>
+      <h3>Academic <span class="grad-text">Journey</span></h3>
+    </div>
+    <div class="edu-grid">
+      @for (e of education; track e.degree; let i = $index) {
+        <div class="edu card" tilt reveal="zoom" [revealDelay]="i * 120" [class.main]="i === 0">
+          <span class="e-icon"><app-icon name="grad" [size]="22" /></span>
+          <span class="e-period">{{ e.period }}</span>
+          <h4>{{ e.degree }}</h4>
+          <p class="school">{{ e.school }}</p>
+          <p class="note">{{ e.note }}</p>
+          @if (i === 0) {
+            <div class="progress-mini"><i></i></div>
+            <small class="pm-label">Semester 4 of 8 complete</small>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,68 @@
+<section class="block skills">
+  <div class="container">
+    <div class="section-head center" reveal>
+      <span class="eyebrow">Tech stack</span>
+      <h2>Skills &amp; <span class="grad-text">Expertise</span></h2>
+      <p>The tools and practices I use to ship secure, scalable, enterprise-grade systems.</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs" reveal [revealDelay]="100">
+      @for (g of groups; track g.title; let i = $index) {
+        <button [class.active]="activeTab() === i" (click)="activeTab.set(i)">
+          <app-icon [name]="g.icon" [size]="17" /> {{ g.title }}
+        </button>
+      }
+      <span class="tab-ink" [style.--i]="activeTab()" [style.--n]="groups.length"></span>
+    </div>
+
+    <div class="panel-wrap" reveal="zoom">
+      @for (g of groups; track g.title; let i = $index) {
+        @if (activeTab() === i) {
+          <div class="panel">
+            <div class="panel-intro card" tilt [tiltMax]="5">
+              <span class="pi-icon"><app-icon [name]="g.icon" [size]="30" /></span>
+              <h3>{{ g.title }}</h3>
+              <p>{{ g.skills.length }} core skills</p>
+              <div class="avg">
+                <svg viewBox="0 0 120 120">
+                  <circle cx="60" cy="60" r="52" class="bg" />
+                  <circle cx="60" cy="60" r="52" class="fg" [style.--p]="avg(g)" />
+                </svg>
+                <div><strong>{{ avg(g) }}%</strong><small>avg proficiency</small></div>
+              </div>
+            </div>
+            <div class="bars">
+              @for (s of g.skills; track s.name; let j = $index) {
+                <div class="bar" [style.--d]="j * 90 + 'ms'">
+                  <div class="bar-top"><span>{{ s.name }}</span><b>{{ s.level }}%</b></div>
+                  <div class="track"><i [style.--w]="s.level + '%'"></i></div>
+                </div>
+              }
+            </div>
+          </div>
+        }
+      }
+    </div>
+
+    <!-- All groups overview -->
+    <div class="overview">
+      @for (g of groups; track g.title; let i = $index) {
+        <div class="ov card" tilt reveal [revealDelay]="i * 100" (click)="activeTab.set(i)" [class.on]="activeTab() === i">
+          <span class="ov-icon"><app-icon [name]="g.icon" [size]="22" /></span>
+          <h4>{{ g.title }}</h4>
+          <div class="ov-tags">
+            @for (s of g.skills; track s.name) { <span class="chip">{{ s.name }}</span> }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Marquee -->
+  <div class="marquee" aria-hidden="true">
+    <div class="track-m">
+      @for (t of marquee; track $index) { <span>{{ t }}<i>✦</i></span> }
+    </div>
+  </div>
+</section>

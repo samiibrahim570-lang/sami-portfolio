@@ -1,0 +1,68 @@
+<!-- Preloader -->
+<div class="loader" [class.done]="!loading()" aria-hidden="true">
+  <div class="loader-logo">
+    <span>S</span><span>I</span>
+  </div>
+  <div class="loader-bar"><i></i></div>
+</div>
+
+<!-- Scroll progress + cursor glow -->
+<div class="progress" [style.width.%]="progress()"></div>
+<div class="cursor-glow" [class.on]="cursor().on" [style.transform]="'translate(' + cursor().x + 'px,' + cursor().y + 'px)'"></div>
+
+<!-- Navbar -->
+<header class="nav" [class.scrolled]="scrolled()">
+  <div class="container nav-inner">
+    <a href="#home" class="brand" (click)="closeMenu()">
+      <span class="brand-mark">SI</span>
+      <span class="brand-text">Sami<b>.</b>dev</span>
+    </a>
+
+    <nav class="links" [class.open]="menuOpen()">
+      @for (l of links; track l.id; let i = $index) {
+        <a [href]="'#' + l.id" [class.active]="active() === l.id" (click)="closeMenu()" [style.--i]="i">{{ l.label }}</a>
+      }
+      <a class="btn btn-primary nav-cta" [href]="profile.cv" download magnetic>
+        <app-icon name="download" [size]="16" /> Resume
+      </a>
+    </nav>
+
+    <button class="burger" [class.open]="menuOpen()" (click)="toggleMenu()" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <app-hero id="home" data-spy />
+  <app-about id="about" data-spy />
+  <app-skills id="skills" data-spy />
+  <app-experience id="experience" data-spy />
+  <app-projects id="projects" data-spy />
+  <app-contact id="contact" data-spy />
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="f-brand">
+      <span class="brand-mark">SI</span>
+      <div>
+        <h4>{{ profile.name }}</h4>
+        <p>{{ profile.title }} · {{ profile.location }}</p>
+      </div>
+    </div>
+    <nav class="f-links">
+      @for (l of links; track l.id) { <a [href]="'#' + l.id">{{ l.label }}</a> }
+    </nav>
+    <div class="f-social">
+      <a [href]="profile.linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><app-icon name="linkedin" [size]="18" /></a>
+      <a [href]="'mailto:' + profile.email" aria-label="Email"><app-icon name="mail" [size]="18" /></a>
+      <a [href]="'tel:' + profile.phone.replaceAll(' ', '')" aria-label="Phone"><app-icon name="phone" [size]="18" /></a>
+    </div>
+  </div>
+  <div class="container f-bottom">
+    <p>© {{ year }} {{ profile.name }}. Crafted with Angular & lots of ☕.</p>
+    <button class="to-top" (click)="toTop()" aria-label="Back to top"><app-icon name="up" [size]="18" /></button>
+  </div>
+</footer>

@@ -1,0 +1,59 @@
+﻿<section class="block about">
+  <div class="container grid">
+    <!-- Left: profile card -->
+    <div class="profile-col" reveal="left">
+      <div class="profile-card" tilt [tiltMax]="6">
+        <div class="pc-top">
+          <div class="avatar"><span>SI</span></div>
+          <div>
+            <h3>{{ p.name }}</h3>
+            <p>{{ p.title }}</p>
+          </div>
+        </div>
+        <ul class="facts">
+          <li><app-icon name="briefcase" [size]="17" /> <span>.NET Developer · Child Life Foundation</span></li>
+          <li><app-icon name="grad" [size]="17" /> <span>BSCS · ILMA University (2027)</span></li>
+          <li><app-icon name="pin" [size]="17" /> <span>{{ p.location }}</span></li>
+          <li><app-icon name="mail" [size]="17" /> <a [href]="'mailto:' + p.email">{{ p.email }}</a></li>
+        </ul>
+        <div class="exp-badge">
+          <strong>3+</strong>
+          <span>Years building<br>enterprise software</span>
+        </div>
+      </div>
+      <div class="deco-square"></div>
+      <div class="deco-dots"></div>
+    </div>
+
+    <!-- Right: story -->
+    <div class="story">
+      <div reveal>
+        <span class="eyebrow">About me</span>
+        <h2 class="title">Turning complex workflows into <span class="grad-text">elegant, reliable software.</span></h2>
+      </div>
+      <p class="text" reveal [revealDelay]="100">{{ p.summary }}</p>
+      <p class="text" reveal [revealDelay]="180">
+        From flour-mill ERPs to hospital EMRs, I own the full lifecycle — designing database schemas, building secure
+        ASP.NET Core APIs and crafting fast, responsive Angular frontends — always with clean architecture and real-world
+        impact in mind.
+      </p>
+
+      <ul class="highlights">
+        @for (h of highlights; track h; let i = $index) {
+          <li reveal [revealDelay]="220 + i * 70"><span class="tick"><app-icon name="check" [size]="14" [stroke]="3" /></span>{{ h }}</li>
+        }
+      </ul>
+    </div>
+  </div>
+
+  <!-- Strengths -->
+  <div class="container strengths">
+    @for (s of strengths; track s.title; let i = $index) {
+      <div class="strength card" tilt reveal [revealDelay]="i * 110">
+        <span class="s-icon"><app-icon [name]="s.icon" [size]="22" /></span>
+        <h4>{{ s.title }}</h4>
+        <p>{{ s.text }}</p>
+      </div>
+    }
+  </div>
+</section>
