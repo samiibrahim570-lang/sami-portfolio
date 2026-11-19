@@ -11,27 +11,40 @@
 <div class="cursor-glow" [class.on]="cursor().on" [style.transform]="'translate(' + cursor().x + 'px,' + cursor().y + 'px)'"></div>
 
 <!-- Navbar -->
-<header class="nav" [class.scrolled]="scrolled()">
+<header class="nav" [class.scrolled]="scrolled()" [class.menu-open]="menuOpen()">
   <div class="container nav-inner">
     <a href="#home" class="brand" (click)="closeMenu()">
       <span class="brand-mark">SI</span>
       <span class="brand-text">Sami<b>.</b>dev</span>
     </a>
 
-    <nav class="links" [class.open]="menuOpen()">
-      @for (l of links; track l.id; let i = $index) {
-        <a [href]="'#' + l.id" [class.active]="active() === l.id" (click)="closeMenu()" [style.--i]="i">{{ l.label }}</a>
+    <nav class="links">
+      @for (l of links; track l.id) {
+        <a [href]="'#' + l.id" [class.active]="active() === l.id">{{ l.label }}</a>
       }
       <a class="btn btn-primary nav-cta" [href]="profile.cv" download magnetic>
         <app-icon name="download" [size]="16" /> Resume
       </a>
     </nav>
 
-    <button class="burger" [class.open]="menuOpen()" (click)="toggleMenu()" aria-label="Toggle menu">
+    <button class="burger" [class.open]="menuOpen()" (click)="toggleMenu()" aria-label="Toggle menu"
+      [attr.aria-expanded]="menuOpen()" aria-controls="mobile-menu">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
+
+<!-- Mobile menu: lives outside the header so the header's backdrop-filter can't trap it -->
+<div id="mobile-menu" class="m-menu" [class.open]="menuOpen()" [attr.aria-hidden]="!menuOpen()" (click)="closeMenu()">
+  <nav (click)="$event.stopPropagation()">
+    @for (l of links; track l.id; let i = $index) {
+      <a [href]="'#' + l.id" [class.active]="active() === l.id" (click)="closeMenu()" [style.--i]="i">{{ l.label }}</a>
+    }
+    <a class="btn btn-primary m-cta" [href]="profile.cv" download (click)="closeMenu()" [style.--i]="links.length">
+      <app-icon name="download" [size]="16" /> Resume
+    </a>
+  </nav>
+</div>
 
 <main>
   <app-hero id="home" data-spy />

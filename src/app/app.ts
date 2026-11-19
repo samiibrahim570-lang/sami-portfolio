@@ -57,7 +57,18 @@ export class App implements AfterViewInit, OnDestroy {
     if (e.pointerType === 'mouse') this.cursor.set({ x: e.clientX, y: e.clientY, on: true });
   }
 
-  toggleMenu() { this.menuOpen.update((v) => !v); }
-  closeMenu() { this.menuOpen.set(false); }
+  @HostListener('window:resize')
+  onResize() { if (window.innerWidth > 900 && this.menuOpen()) this.closeMenu(); }
+
+  @HostListener('document:keydown.escape')
+  onEsc() { this.closeMenu(); }
+
+  toggleMenu() { this.setMenu(!this.menuOpen()); }
+  closeMenu() { this.setMenu(false); }
+
+  private setMenu(open: boolean) {
+    this.menuOpen.set(open);
+    document.documentElement.classList.toggle('no-scroll', open);
+  }
   toTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 }

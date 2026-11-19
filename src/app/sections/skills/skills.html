@@ -7,7 +7,7 @@
     </div>
 
     <!-- Tabs -->
-    <div class="tabs" reveal [revealDelay]="100">
+    <div class="tabs" reveal [revealDelay]="100" [style.--n]="groups.length">
       @for (g of groups; track g.title; let i = $index) {
         <button [class.active]="activeTab() === i" (click)="activeTab.set(i)">
           <app-icon [name]="g.icon" [size]="17" /> {{ g.title }}

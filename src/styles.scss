@@ -130,3 +130,5 @@ section.block { position: relative; padding: 120px 0; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   html { scroll-behavior: auto; }
 }
+
+html.no-scroll, html.no-scroll body { overflow: hidden; }

@@ -7,9 +7,12 @@
     </div>
 
     <!-- Featured -->
-    <article class="featured" reveal="zoom">
+    @for (featured of featuredList; track featured.title; let fi = $index) {
+    <article class="featured" [class.ai]="featured.variant === 'ai'" [class.flip]="fi % 2 === 1" reveal="zoom">
       <div class="f-copy">
-        <span class="f-label"><app-icon name="zap" [size]="14" /> Featured · {{ featured.org }}</span>
+        <span class="f-label">
+          <app-icon [name]="featured.variant === 'ai' ? 'sparkle' : 'zap'" [size]="14" /> Featured · {{ featured.org }}
+        </span>
         <h3>{{ featured.title }}</h3>
         <p>{{ featured.text }}</p>
         <ul>
@@ -20,37 +23,71 @@
         <div class="tags">
           @for (t of featured.tags; track t) { <span>{{ t }}</span> }
         </div>
+        @if (featured.link) {
+          <div class="f-actions">
+            <a class="btn btn-primary" [href]="featured.link" target="_blank" rel="noopener" magnetic>
+              Live Demo <app-icon name="external" [size]="17" />
+            </a>
+          </div>
+        }
       </div>
 
       <!-- Mock dashboard -->
       <div class="f-visual" tilt [tiltMax]="6">
         <div class="win">
-          <div class="win-bar"><i></i><i></i><i></i><span>clf-emr / dashboard</span></div>
-          <div class="win-body">
-            <aside>
-              <b></b>
-              @for (n of [1,2,3,4,5]; track n) { <span [class.on]="n === 1"></span> }
-            </aside>
-            <div class="dash">
-              <div class="kpis">
-                <div class="kpi"><small>Patients</small><strong>EMR</strong><em class="up">● live</em></div>
-                <div class="kpi"><small>Decisions</small><strong>DSS</strong><em>● rules</em></div>
-                <div class="kpi"><small>Lab tests</small><strong>LAB</strong><em>● results</em></div>
-              </div>
-              <div class="chart">
-                @for (h of [42, 64, 50, 78, 58, 88, 70, 95, 66, 84]; track $index) {
-                  <span [style.--h]="h + '%'" [style.--d]="$index * 70 + 'ms'"></span>
-                }
-              </div>
-              <div class="rows">
-                @for (r of [1,2,3]; track r) { <div class="row"><i></i><b></b><span></span></div> }
+          <div class="win-bar"><i></i><i></i><i></i><span>{{ featured.window }}</span></div>
+          @if (featured.variant === 'ai') {
+            <div class="win-body">
+              <aside>
+                <b></b>
+                @for (n of [1,2,3,4,5,6]; track n) { <span [class.on]="n === 6"></span> }
+              </aside>
+              <div class="dash">
+                <div class="kpis">
+                  <div class="kpi"><small>Sales</small><strong>9.1K</strong><em class="up">▲ this month</em></div>
+                  <div class="kpi"><small>Stock</small><strong>MK-17</strong><em>● top category</em></div>
+                  <div class="kpi"><small>Ledger</small><strong>Live</strong><em>● balanced</em></div>
+                </div>
+                <div class="chat">
+                  <div class="msg me">Which item sold the most this month?</div>
+                  <div class="msg bot">
+                    <span class="bot-ic"><app-icon name="sparkle" [size]="13" /></span>
+                    <span><b>Beat</b> — 9,120 units, 100% of MK-17 category sales.</span>
+                  </div>
+                  <div class="typing"><i></i><i></i><i></i></div>
+                </div>
               </div>
             </div>
-          </div>
+          } @else {
+            <div class="win-body">
+              <aside>
+                <b></b>
+                @for (n of [1,2,3,4,5]; track n) { <span [class.on]="n === 1"></span> }
+              </aside>
+              <div class="dash">
+                <div class="kpis">
+                  <div class="kpi"><small>Patients</small><strong>EMR</strong><em class="up">● live</em></div>
+                  <div class="kpi"><small>Decisions</small><strong>DSS</strong><em>● rules</em></div>
+                  <div class="kpi"><small>Lab tests</small><strong>LAB</strong><em>● results</em></div>
+                </div>
+                <div class="chart">
+                  @for (h of [42, 64, 50, 78, 58, 88, 70, 95, 66, 84]; track $index) {
+                    <span [style.--h]="h + '%'" [style.--d]="$index * 70 + 'ms'"></span>
+                  }
+                </div>
+                <div class="rows">
+                  @for (r of [1,2,3]; track r) { <div class="row"><i></i><b></b><span></span></div> }
+                </div>
+              </div>
+            </div>
+          }
         </div>
-        <div class="pulse-card"><app-icon name="heart" [size]="16" /> Healthcare</div>
+        <div class="pulse-card" [class.ai]="featured.variant === 'ai'">
+          <app-icon [name]="featured.variant === 'ai' ? 'sparkle' : 'heart'" [size]="16" /> {{ featured.badge }}
+        </div>
       </div>
     </article>
+    }
 
     <!-- Grid -->
     <div class="grid">
@@ -58,7 +95,7 @@
         <article class="proj card" tilt reveal [revealDelay]="(i % 2) * 120">
           <div class="p-top">
             <span class="p-icon"><app-icon [name]="p.icon" [size]="24" /></span>
-            <span class="p-num">0{{ i + 2 }}</span>
+            <span class="p-num">0{{ i + featuredList.length + 1 }}</span>
           </div>
           <span class="p-org">{{ p.org }}</span>
           <h3>{{ p.title }}</h3>

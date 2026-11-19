@@ -17,6 +17,8 @@ export class About {
     'Clean Architecture & RESTful API Design',
     'SQL Server & PostgreSQL Performance Tuning',
     'Healthcare Workflows — EMR, DSS & LAB',
+    'AI Integration & AI Agents (LLM-powered assistants)',
+    'ASP.NET MVC, Web API & Third-party API Integration',
     'Mentoring Junior Developers',
   ];
 }

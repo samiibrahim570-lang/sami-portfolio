@@ -88,22 +88,37 @@
   }
 }
 
+.m-menu { display: none; }
+
 @media (max-width: 900px) {
   .burger { display: block; z-index: 2; }
-  .links {
-    position: fixed; inset: 0; flex-direction: column; justify-content: center; gap: 10px;
-    background: rgba(255, 255, 255, .97); backdrop-filter: blur(12px);
-    clip-path: circle(0 at calc(100% - 42px) 42px); transition: clip-path .7s var(--ease);
+  .links { display: none; }
+  .nav.menu-open { background: transparent; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+
+  .m-menu {
+    position: fixed; inset: 0; z-index: 99; display: grid; place-items: center;
+    padding: 90px 24px 40px; overflow-y: auto; overscroll-behavior: contain;
+    background: #fff;
+    clip-path: circle(0 at calc(100% - 42px) 42px);
+    visibility: hidden;
+    transition: clip-path .6s var(--ease), visibility 0s linear .6s;
+    nav { display: flex; flex-direction: column; align-items: center; gap: 8px; }
     a:not(.btn) {
+      position: relative; padding: 10px 20px;
       font: 600 28px var(--font-display); color: var(--navy-900);
-      opacity: 0; transform: translateY(20px); transition: opacity .5s, transform .5s var(--ease);
-      transition-delay: calc(var(--i) * 60ms + 200ms);
-      &::after { bottom: -4px; }
+      opacity: 0; transform: translateY(20px); transition: opacity .4s, transform .4s var(--ease);
+      &::after {
+        content: ''; position: absolute; left: 50%; bottom: 2px; width: 6px; height: 6px; border-radius: 50%;
+        background: var(--blue-500); transform: translateX(-50%) scale(0); transition: transform .35s var(--ease);
+      }
+      &.active { color: var(--blue-500); &::after { transform: translateX(-50%) scale(1); } }
     }
-    .nav-cta { margin: 20px 0 0; }
+    .m-cta { margin-top: 22px; opacity: 0; transform: translateY(20px); transition: opacity .4s, transform .4s var(--ease); }
     &.open {
       clip-path: circle(150% at calc(100% - 42px) 42px);
-      a:not(.btn) { opacity: 1; transform: none; }
+      visibility: visible;
+      transition: clip-path .7s var(--ease), visibility 0s;
+      a:not(.btn), .m-cta { opacity: 1; transform: none; transition-delay: calc(var(--i) * 60ms + 180ms); }
     }
   }
 }

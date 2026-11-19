@@ -4,21 +4,23 @@ export const PROFILE = {
   name: 'Sami Ibrahim',
   firstName: 'Sami',
   lastName: 'Ibrahim',
-  title: 'Full Stack Developer',
+  title: 'Software Engineer',
+  headline:
+    'Software Engineer | ASP.NET Core | ASP.NET MVC | Web API | Angular | API Integration | AI Integration | AI Agents | EF Core | SQL Server | PostgreSQL | Machine Learning',
   location: 'Karachi, Pakistan',
   phone: '+92 313 2334173',
   email: 'samiibrahim570@gmail.com',
   linkedin: 'https://www.linkedin.com/in/sami-ibrahim-b90951313/',
   cv: 'Sami-Ibrahim-CV.pdf',
-  roles: ['Full Stack Developer', 'Angular Specialist', 'ASP.NET Core Engineer', 'Healthcare Systems Builder', 'ERP Architect'],
+  roles: ['Software Engineer', 'ASP.NET Core Engineer', 'Angular Specialist', 'AI Integration Developer', 'AI Agents Builder', 'ERP Architect'],
   summary:
-    'Results-driven Full Stack Developer with 3+ years of experience designing and developing enterprise-level ERP and healthcare systems. Expert in Angular for frontend development and ASP.NET Core for secure, scalable backend APIs — with a strong background in SQL databases, business analysis, QA collaboration and performance optimization.',
+    'Results-driven Software Engineer with 3+ years of experience designing and developing enterprise-level ERP, healthcare and AI-powered business systems. Expert in ASP.NET Core, ASP.NET MVC & Web API on the backend and Angular on the frontend — with hands-on AI integration, AI agents, API integration, EF Core, SQL Server, PostgreSQL and machine learning fundamentals.',
 };
 
 export const STATS = [
   { value: 3, suffix: '+', label: 'Years Experience' },
-  { value: 7, suffix: '+', label: 'Systems Delivered' },
-  { value: 15, suffix: '+', label: 'Technologies' },
+  { value: 8, suffix: '+', label: 'Systems Delivered' },
+  { value: 20, suffix: '+', label: 'Technologies' },
   { value: 5, suffix: '', label: 'Business Domains' },
 ];
 
@@ -42,8 +44,9 @@ export const SKILL_GROUPS: SkillGroup[] = [
   {
     icon: 'server', title: 'Backend',
     skills: [
-      { name: 'ASP.NET Core Web API', level: 93 }, { name: 'C#', level: 91 }, { name: 'Entity Framework Core', level: 88 },
-      { name: 'RESTful API Design', level: 94 }, { name: 'JWT & Role-Based Auth', level: 90 },
+      { name: 'ASP.NET Core Web API', level: 93 }, { name: 'ASP.NET MVC', level: 90 }, { name: 'C#', level: 91 },
+      { name: 'Entity Framework Core', level: 88 }, { name: 'RESTful API Design & Integration', level: 93 },
+      { name: 'JWT & Role-Based Auth', level: 90 },
     ],
   },
   {
@@ -51,6 +54,14 @@ export const SKILL_GROUPS: SkillGroup[] = [
     skills: [
       { name: 'SQL Server', level: 92 }, { name: 'PostgreSQL', level: 84 }, { name: 'Query Optimization', level: 87 },
       { name: 'Database Design', level: 89 },
+    ],
+  },
+  {
+    icon: 'sparkle', title: 'AI & ML',
+    skills: [
+      { name: 'AI Integration (LLM APIs)', level: 88 }, { name: 'AI Agents & Tool Calling', level: 85 },
+      { name: 'Prompt Engineering', level: 87 }, { name: 'AI Data Import / Extraction', level: 84 },
+      { name: 'Machine Learning Fundamentals', level: 75 },
     ],
   },
   {
@@ -63,8 +74,9 @@ export const SKILL_GROUPS: SkillGroup[] = [
 ];
 
 export const TECH_MARQUEE = [
-  'Angular', 'TypeScript', 'RxJS', 'ASP.NET Core', 'C#', 'Entity Framework', 'SQL Server', 'PostgreSQL',
-  'REST APIs', 'JWT', 'Tailwind CSS', 'HTML5', 'CSS3', 'Clean Architecture', 'Git',
+  'ASP.NET Core', 'ASP.NET MVC', 'Web API', 'C#', 'Angular', 'TypeScript', 'RxJS', 'EF Core', 'SQL Server',
+  'PostgreSQL', 'AI Integration', 'AI Agents', 'Machine Learning', 'API Integration', 'JWT', 'Tailwind CSS',
+  'Clean Architecture', 'Git',
 ];
 
 export const EXPERIENCE = [
@@ -100,9 +112,26 @@ export const EXPERIENCE = [
   },
 ];
 
-export const PROJECTS = [
+export interface Project {
+  icon: string; featured: boolean; variant?: 'ai' | 'emr';
+  title: string; org: string; text: string; features: string[]; tags: string[];
+  link?: string; window?: string; badge?: string;
+}
+
+export const PROJECTS: Project[] = [
   {
-    icon: 'heart', featured: true,
+    icon: 'sparkle', featured: true, variant: 'ai',
+    title: 'BizFlow — AI-Powered Business ERP',
+    org: 'AI Project · Live',
+    badge: 'AI Powered',
+    link: 'http://biz-flow.runasp.net/dashboard',
+    window: 'biz-flow / dashboard',
+    text: 'Multi-company, multi-branch business management system (running live for a fish feed mill) with an AI Business Assistant you can ask about sales, stock and ledgers in plain language, plus AI-driven Excel import that maps messy sheets straight into masters and transactions.',
+    features: ['AI Business Assistant', 'AI Import from Excel', 'Sales, Purchase & Returns', 'Production / Pisai', 'Ledger & Stock Ledger', 'Vouchers & Gate Pass', 'Multi-Company & Branches', 'Roles & Permissions'],
+    tags: ['ASP.NET Core', 'Angular', 'AI Agents', 'LLM Integration', 'EF Core', 'SQL Server'],
+  },
+  {
+    icon: 'heart', featured: true, variant: 'emr', window: 'clf-emr / dashboard', badge: 'Healthcare',
     title: 'EMR, DSS & LAB Systems',
     org: 'Child Life Foundation',
     text: 'Healthcare platform powering electronic medical records, clinical decision support and laboratory information management for real patient care delivery.',

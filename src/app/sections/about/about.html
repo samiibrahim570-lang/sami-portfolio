@@ -32,9 +32,12 @@
         <h2 class="title">Turning complex workflows into <span class="grad-text">elegant, reliable software.</span></h2>
       </div>
       <p class="text" reveal [revealDelay]="100">{{ p.summary }}</p>
+      <div class="headline" reveal [revealDelay]="140">
+        @for (h of p.headline.split(' | '); track h) { <span class="chip">{{ h }}</span> }
+      </div>
       <p class="text" reveal [revealDelay]="180">
-        From flour-mill ERPs to hospital EMRs, I own the full lifecycle — designing database schemas, building secure
-        ASP.NET Core APIs and crafting fast, responsive Angular frontends — always with clean architecture and real-world
+        From flour-mill and fish-feed ERPs to hospital EMRs and AI business assistants, I own the full lifecycle — designing database schemas, building secure
+        ASP.NET Core APIs and crafting fast, responsive Angular frontends, and wiring in AI agents that let users talk to their own data — always with clean architecture and real-world
         impact in mind.
       </p>
 
